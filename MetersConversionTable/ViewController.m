@@ -13,8 +13,8 @@
 @end
 
 @implementation ViewController {
-    NSArray *datasArray;
-    NSMutableArray *checkedDatasArray;
+    NSArray *meterFeetArray;
+    NSMutableArray *checkedMeterFeetArray;
     BOOL dayMode;
 }
 
@@ -22,61 +22,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    datasArray = @[@[@"125", @"411"],
-                   @[@"119", @"391"],
-                   @[@"113", @"371"],
-                   @[@"107", @"351"],
-                   @[@"101", @"331"],
-                   @[@"95", @"311"],
-                   @[@"89", @"291"],
-                   @[@"84", @"276"],
-                   @[@"81", @"266"],
-                   @[@"78", @"256"],
-                   @[@"75", @"246"],
-                   @[@"72", @"236"],
-                   @[@"69", @"226"],
-                   @[@"66", @"217"],
-                   @[@"63", @"207"],
-                   @[@"60", @"197"],
-                   @[@"57", @"187"],
-                   @[@"54", @"177"],
-                   @[@"51", @"167"],
-                   @[@"48", @"157"],
-                   @[@"45", @"148"],
-                   @[@"42", @"138"],
-                   @[@"39", @"128"],
-                   @[@"36", @"118"],
-                   @[@"33", @"108"],
-                   @[@"30", @"98"],
-                   @[@"27", @"89"],
-                   @[@"24", @"79"],
-                   @[@"21", @"69"],
-                   @[@"18", @"59"],
-                   @[@"15", @"49"],
-                   @[@"12", @"39"],
-                   @[@"10", @"33"],
-                   @[@"9", @"30"],
-                   @[@"7", @"23"],
-                   @[@"6", @"20"],
-                   @[@"5.5", @"18"],
-                   @[@"5", @"16"],
-                   @[@"4", @"13"],
-                   @[@"3", @"10"]
-                   ];
-    
-    checkedDatasArray = [NSMutableArray new];
-    for (int i = 0; i < datasArray.count; i++) {
-        [checkedDatasArray addObject:@"NO"];
-    }
-    
-    [_titleButton setTitle:@"PEK EAST" forState:UIControlStateNormal];
-    
+    _selectedArea = 0;
     dayMode = NO;
+    
+    [self setData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setData {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSArray *datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    NSArray *selectedDatasArray = datasArray[_selectedArea];
+    
+    [_titleButton setTitle:selectedDatasArray[0] forState:UIControlStateNormal];
+    meterFeetArray = selectedDatasArray[1];
+    
+    checkedMeterFeetArray = [NSMutableArray new];
+    for (int i = 0; i < meterFeetArray.count; i++) {
+        [checkedMeterFeetArray addObject:@"NO"];
+    }
+    
+    [_conversionTableView reloadData];
 }
 
 // TableView関連
@@ -91,7 +62,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return datasArray.count;
+    return meterFeetArray.count;
 }
 
 - (ConversionTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,7 +72,7 @@
         cell = [topLevelObjects objectAtIndex:0];
     }
     
-    float meter = [datasArray[indexPath.row][0] floatValue];
+    float meter = [meterFeetArray[indexPath.row][0] floatValue];
     int meter_int = (int)meter;
     int meter_float = (meter - meter_int) * 10;
     
@@ -121,7 +92,7 @@
         cell.meterLabel_.font = [UIFont fontWithName:@"Courier New" size:15];
     }
     
-    cell.feetLabel.text = datasArray[indexPath.row][1];
+    cell.feetLabel.text = meterFeetArray[indexPath.row][1];
     
     if (dayMode) {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
@@ -149,7 +120,7 @@
         } completion:nil];
     }
     
-    if ([checkedDatasArray[indexPath.row] isEqualToString:@"YES"]) {
+    if ([checkedMeterFeetArray[indexPath.row] isEqualToString:@"YES"]) {
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -159,11 +130,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [checkedDatasArray replaceObjectAtIndex:indexPath.row withObject:@"YES"];
+    [checkedMeterFeetArray replaceObjectAtIndex:indexPath.row withObject:@"YES"];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    [checkedDatasArray replaceObjectAtIndex:indexPath.row withObject:@"NO"];
+    [checkedMeterFeetArray replaceObjectAtIndex:indexPath.row withObject:@"NO"];
 }
 
 - (IBAction)dayModeButton:(id)sender {
@@ -180,6 +151,10 @@
         AreaTableViewController *areaTableViewController = segue.destinationViewController;
         areaTableViewController.dayMode = dayMode;
     }
+}
+
+- (IBAction)firstViewReturnActionForSegue:(UIStoryboardSegue *)segue {
+    [self setData];
 }
 
 @end

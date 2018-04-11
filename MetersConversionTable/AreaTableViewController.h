@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ViewController.h"
+
 @interface AreaTableViewController : UITableViewController
 
 @property (nonatomic) BOOL dayMode;

@@ -14,9 +14,10 @@
 
 @interface ViewController : UIViewController
 
-
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
 @property (weak, nonatomic) IBOutlet UITableView *conversionTableView;
+
+@property (nonatomic) NSInteger selectedArea;
 
 - (IBAction)dayModeButton:(id)sender;
 
