@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "ConversionTableViewCell.h"
+#import "AreaTableViewController.h"
+#import "SettingTableViewController.h"
 
 @interface ViewController : UIViewController
 
+
+@property (weak, nonatomic) IBOutlet UIButton *titleButton;
 @property (weak, nonatomic) IBOutlet UITableView *conversionTableView;
 
 - (IBAction)dayModeButton:(id)sender;

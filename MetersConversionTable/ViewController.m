@@ -69,7 +69,7 @@
         [checkedDatasArray addObject:@"NO"];
     }
     
-    self.title = @"PEK EAST";
+    [_titleButton setTitle:@"PEK EAST" forState:UIControlStateNormal];
     
     dayMode = NO;
 }
@@ -170,4 +170,16 @@
     dayMode = !dayMode;
     [_conversionTableView reloadData];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"settingSegue"]) {
+        SettingTableViewController *settingTableViewController = segue.destinationViewController;
+        settingTableViewController.dayMode = dayMode;
+    }
+    if ([segue.identifier isEqualToString:@"areaSegue"]) {
+        AreaTableViewController *areaTableViewController = segue.destinationViewController;
+        areaTableViewController.dayMode = dayMode;
+    }
+}
+
 @end
