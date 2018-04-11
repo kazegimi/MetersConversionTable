@@ -16,6 +16,9 @@
 		440EA5AA207DF80000EB7389 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5A9207DF80000EB7389 /* main.m */; };
 		440EA5B4207DF80000EB7389 /* MetersConversionTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5B3207DF80000EB7389 /* MetersConversionTableTests.m */; };
 		440EA5BF207DF80000EB7389 /* MetersConversionTableUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5BE207DF80000EB7389 /* MetersConversionTableUITests.m */; };
+		440EA5CE207DF87100EB7389 /* dayModeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 440EA5CD207DF87100EB7389 /* dayModeButton@2x.png */; };
+		440EA5D2207DF8C200EB7389 /* ConversionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5D0207DF8C200EB7389 /* ConversionTableViewCell.m */; };
+		440EA5D3207DF8C200EB7389 /* ConversionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440EA5D1207DF8C200EB7389 /* ConversionTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,10 @@
 		440EA5BA207DF80000EB7389 /* MetersConversionTableUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetersConversionTableUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		440EA5BE207DF80000EB7389 /* MetersConversionTableUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetersConversionTableUITests.m; sourceTree = "<group>"; };
 		440EA5C0207DF80000EB7389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		440EA5CD207DF87100EB7389 /* dayModeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dayModeButton@2x.png"; path = "img/dayModeButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		440EA5CF207DF8C200EB7389 /* ConversionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversionTableViewCell.h; sourceTree = "<group>"; };
+		440EA5D0207DF8C200EB7389 /* ConversionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversionTableViewCell.m; sourceTree = "<group>"; };
+		440EA5D1207DF8C200EB7389 /* ConversionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversionTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +110,15 @@
 		440EA596207DF80000EB7389 /* MetersConversionTable */ = {
 			isa = PBXGroup;
 			children = (
+				440EA5CC207DF84E00EB7389 /* img */,
 				440EA597207DF80000EB7389 /* AppDelegate.h */,
 				440EA598207DF80000EB7389 /* AppDelegate.m */,
+				440EA59D207DF80000EB7389 /* Main.storyboard */,
 				440EA59A207DF80000EB7389 /* ViewController.h */,
 				440EA59B207DF80000EB7389 /* ViewController.m */,
-				440EA59D207DF80000EB7389 /* Main.storyboard */,
+				440EA5D1207DF8C200EB7389 /* ConversionTableViewCell.xib */,
+				440EA5CF207DF8C200EB7389 /* ConversionTableViewCell.h */,
+				440EA5D0207DF8C200EB7389 /* ConversionTableViewCell.m */,
 				440EA5A3207DF80000EB7389 /* Assets.xcassets */,
 				440EA5A5207DF80000EB7389 /* LaunchScreen.storyboard */,
 				440EA5A8207DF80000EB7389 /* Info.plist */,
@@ -133,6 +144,14 @@
 				440EA5C0207DF80000EB7389 /* Info.plist */,
 			);
 			path = MetersConversionTableUITests;
+			sourceTree = "<group>";
+		};
+		440EA5CC207DF84E00EB7389 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				440EA5CD207DF87100EB7389 /* dayModeButton@2x.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +260,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440EA5CE207DF87100EB7389 /* dayModeButton@2x.png in Resources */,
 				440EA5A7207DF80000EB7389 /* LaunchScreen.storyboard in Resources */,
 				440EA5A4207DF80000EB7389 /* Assets.xcassets in Resources */,
 				440EA59F207DF80000EB7389 /* Main.storyboard in Resources */,
+				440EA5D3207DF8C200EB7389 /* ConversionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +292,7 @@
 				440EA59C207DF80000EB7389 /* ViewController.m in Sources */,
 				440EA5A2207DF80000EB7389 /* MetersConversionTable.xcdatamodeld in Sources */,
 				440EA5AA207DF80000EB7389 /* main.m in Sources */,
+				440EA5D2207DF8C200EB7389 /* ConversionTableViewCell.m in Sources */,
 				440EA599207DF80000EB7389 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
