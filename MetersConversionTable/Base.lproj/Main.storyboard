@@ -63,12 +63,12 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <segue destination="ErN-xV-io4" kind="show" id="uYs-oc-8CT"/>
+                                <segue destination="ErN-xV-io4" kind="show" identifier="areaSegue" id="uYs-oc-8CT"/>
                             </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="SettingButton" image="settingButton.png" id="LMI-Mp-TtG">
                             <connections>
-                                <segue destination="fED-ud-ygL" kind="show" id="QeY-Sb-j05"/>
+                                <segue destination="fED-ud-ygL" kind="show" identifier="settingSegue" id="QeY-Sb-j05"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
