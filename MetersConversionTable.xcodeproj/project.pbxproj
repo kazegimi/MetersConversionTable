@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		440EA599207DF80000EB7389 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA598207DF80000EB7389 /* AppDelegate.m */; };
-		440EA59C207DF80000EB7389 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA59B207DF80000EB7389 /* ViewController.m */; };
 		440EA59F207DF80000EB7389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440EA59D207DF80000EB7389 /* Main.storyboard */; };
 		440EA5A2207DF80000EB7389 /* MetersConversionTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5A0207DF80000EB7389 /* MetersConversionTable.xcdatamodeld */; };
 		440EA5A4207DF80000EB7389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 440EA5A3207DF80000EB7389 /* Assets.xcassets */; };
@@ -23,6 +22,7 @@
 		440EA5E1207E0B1400EB7389 /* settingButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 440EA5E0207E0B1400EB7389 /* settingButton@2x.png */; };
 		440EA5E4207E0DDB00EB7389 /* AreaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5E3207E0DDB00EB7389 /* AreaTableViewController.m */; };
 		440EA5E6207E105600EB7389 /* datas.json in Resources */ = {isa = PBXBuildFile; fileRef = 440EA5E5207E105600EB7389 /* datas.json */; };
+		440EA5E9207F208100EB7389 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5E8207F208100EB7389 /* MainTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +46,6 @@
 		440EA594207DF80000EB7389 /* MetersConversionTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetersConversionTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		440EA597207DF80000EB7389 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		440EA598207DF80000EB7389 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		440EA59A207DF80000EB7389 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		440EA59B207DF80000EB7389 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		440EA59E207DF80000EB7389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		440EA5A1207DF80000EB7389 /* MetersConversionTable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MetersConversionTable.xcdatamodel; sourceTree = "<group>"; };
 		440EA5A3207DF80000EB7389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +68,8 @@
 		440EA5E2207E0DDB00EB7389 /* AreaTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaTableViewController.h; sourceTree = "<group>"; };
 		440EA5E3207E0DDB00EB7389 /* AreaTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AreaTableViewController.m; sourceTree = "<group>"; };
 		440EA5E5207E105600EB7389 /* datas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = datas.json; sourceTree = "<group>"; };
+		440EA5E7207F208100EB7389 /* MainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
+		440EA5E8207F208100EB7389 /* MainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +124,8 @@
 				440EA59D207DF80000EB7389 /* Main.storyboard */,
 				440EA597207DF80000EB7389 /* AppDelegate.h */,
 				440EA598207DF80000EB7389 /* AppDelegate.m */,
-				440EA59A207DF80000EB7389 /* ViewController.h */,
-				440EA59B207DF80000EB7389 /* ViewController.m */,
+				440EA5E7207F208100EB7389 /* MainTableViewController.h */,
+				440EA5E8207F208100EB7389 /* MainTableViewController.m */,
 				440EA5D1207DF8C200EB7389 /* ConversionTableViewCell.xib */,
 				440EA5CF207DF8C200EB7389 /* ConversionTableViewCell.h */,
 				440EA5D0207DF8C200EB7389 /* ConversionTableViewCell.m */,
@@ -307,7 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				440EA59C207DF80000EB7389 /* ViewController.m in Sources */,
+				440EA5E9207F208100EB7389 /* MainTableViewController.m in Sources */,
 				440EA5A2207DF80000EB7389 /* MetersConversionTable.xcdatamodeld in Sources */,
 				440EA5DF207E075D00EB7389 /* SettingTableViewController.m in Sources */,
 				440EA5AA207DF80000EB7389 /* main.m in Sources */,

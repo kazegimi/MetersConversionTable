@@ -73,9 +73,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender{
-    ViewController *viewController = (ViewController *)segue.destinationViewController;
+    MainTableViewController *mainTableViewController = (MainTableViewController *)segue.destinationViewController;
     NSIndexPath *selectedPath = [self.tableView indexPathForCell:sender];
-    viewController.selectedArea = selectedPath.row;
+    mainTableViewController.selectedArea = selectedPath.row;
 }
 
 - (void)didReceiveMemoryWarning {

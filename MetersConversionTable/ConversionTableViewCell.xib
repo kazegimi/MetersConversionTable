@@ -140,14 +140,13 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="feetLabel" destination="Jo9-0k-uPn" id="8yY-e8-2Cq"/>
-                <outlet property="feetLabel_" destination="Rhp-kP-7y7" id="2k5-Yx-8i7"/>
-                <outlet property="meterLabel" destination="lj5-KP-MJ6" id="cQM-4s-wpk"/>
-                <outlet property="meterLabel_" destination="35v-Pt-0xs" id="4Wx-az-5YR"/>
+                <outlet property="feetBigLabel" destination="Jo9-0k-uPn" id="Fva-3j-M1O"/>
+                <outlet property="feetSmallLabel" destination="Rhp-kP-7y7" id="jgZ-Tf-5bc"/>
+                <outlet property="meterBigLabel" destination="lj5-KP-MJ6" id="DE9-e9-Zt4"/>
+                <outlet property="meterSmallLabel" destination="35v-Pt-0xs" id="gdr-TG-8vR"/>
                 <outlet property="separateView" destination="POV-Rv-cI3" id="sVX-18-Kgx"/>
             </connections>
             <point key="canvasLocation" x="34" y="54.5"/>
         </tableViewCell>
     </objects>
 </document>
-

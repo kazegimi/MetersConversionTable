@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ViewController.h"
+#import "MainTableViewController.h"
 
 @interface AreaTableViewController : UITableViewController
 

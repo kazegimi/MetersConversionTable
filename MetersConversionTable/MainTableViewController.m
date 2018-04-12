@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  MainTableViewController.m
 //  MetersConversionTable
 //
-//  Created by Eiichi Hayashi on 2018/04/11.
+//  Created by Eiichi Hayashi on 2018/04/12.
 //  Copyright © 2018年 skyElements. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainTableViewController.h"
 
-@interface ViewController ()
+@interface MainTableViewController ()
 
 @end
 
-@implementation ViewController {
+@implementation MainTableViewController {
     NSArray *meterFeetArray;
     NSMutableArray *checkedMeterFeetArray;
     BOOL dayMode;
@@ -47,15 +47,8 @@
         [checkedMeterFeetArray addObject:@"NO"];
     }
     
-    [_conversionTableView reloadData];
+    [self.tableView reloadData];
 }
-
-// TableView関連
-/*
- - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
- return @"";
- }
- */
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 55.0f;
@@ -72,27 +65,35 @@
         cell = [topLevelObjects objectAtIndex:0];
     }
     
-    float meter = [meterFeetArray[indexPath.row][0] floatValue];
-    int meter_int = (int)meter;
-    int meter_float = (meter - meter_int) * 10;
+    // Meter
+    NSString *meterString = meterFeetArray[indexPath.row][0];
+    NSInteger meter = [meterString integerValue];
     
-    NSMutableString *intString = [NSMutableString stringWithString:[NSString stringWithFormat:@"%d", meter_int]];
-    NSInteger length = intString.length;
+    NSInteger meterBig = meter / 100;
+    NSMutableString *meterBigString = [NSMutableString stringWithString:[NSString stringWithFormat:@"%ld", meterBig]];
+    NSInteger length = meterBigString.length;
     if (length > 1) {
-        [intString insertString:@"," atIndex:length - 1];
+        [meterBigString insertString:@"," atIndex:length - 1];
     }
+    cell.meterBigLabel.text = meterBigString;
     
-    cell.meterLabel.text = intString;
+    NSString *meterSmallString = [meterString substringFromIndex:meterString.length - 2];
+    cell.meterSmallLabel.text = [NSString stringWithFormat:@"%@m", meterSmallString];
     
-    if (meter_float != 0) {
-        cell.meterLabel_.text = [NSString stringWithFormat:@"%dm", meter_float * 10];
-        cell.meterLabel_.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:15];
+    if ([meterSmallString isEqualToString:@"00"]) {
+        cell.meterSmallLabel.font = [UIFont fontWithName:@"Courier New" size:15];
     } else {
-        cell.meterLabel_.text = @"00m";
-        cell.meterLabel_.font = [UIFont fontWithName:@"Courier New" size:15];
+        cell.meterSmallLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:15];
     }
     
-    cell.feetLabel.text = meterFeetArray[indexPath.row][1];
+    // Feet
+    NSString *feetString = meterFeetArray[indexPath.row][1];
+    NSInteger feet = [feetString integerValue];
+    NSInteger feetBig = feet / 100;
+    cell.feetBigLabel.text = [NSString stringWithFormat:@"%ld", feetBig];
+    
+    NSString *feetSmallString = [feetString substringFromIndex:feetString.length - 2];
+    cell.feetSmallLabel.text = [NSString stringWithFormat:@"%@ft", feetSmallString];
     
     if (dayMode) {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
@@ -101,10 +102,10 @@
             UIView *selectedView = [[UIView alloc] init];
             selectedView.backgroundColor = [UIColor lightGrayColor];
             [cell setSelectedBackgroundView:selectedView];
-            cell.meterLabel.textColor = [UIColor blackColor];
-            cell.meterLabel_.textColor = [UIColor blackColor];
-            cell.feetLabel.textColor = [UIColor darkGrayColor];
-            cell.feetLabel_.textColor = [UIColor darkGrayColor];
+            cell.meterBigLabel.textColor = [UIColor blackColor];
+            cell.meterSmallLabel.textColor = [UIColor blackColor];
+            cell.feetBigLabel.textColor = [UIColor darkGrayColor];
+            cell.feetSmallLabel.textColor = [UIColor darkGrayColor];
         } completion:nil];
     } else {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
@@ -113,10 +114,10 @@
             UIView *selectedView = [[UIView alloc] init];
             selectedView.backgroundColor = [UIColor darkGrayColor];
             [cell setSelectedBackgroundView:selectedView];
-            cell.meterLabel.textColor = [UIColor lightGrayColor];
-            cell.meterLabel_.textColor = [UIColor lightGrayColor];
-            cell.feetLabel.textColor = [UIColor grayColor];
-            cell.feetLabel_.textColor = [UIColor grayColor];
+            cell.meterBigLabel.textColor = [UIColor lightGrayColor];
+            cell.meterSmallLabel.textColor = [UIColor lightGrayColor];
+            cell.feetBigLabel.textColor = [UIColor grayColor];
+            cell.feetSmallLabel.textColor = [UIColor grayColor];
         } completion:nil];
     }
     
@@ -139,7 +140,7 @@
 
 - (IBAction)dayModeButton:(id)sender {
     dayMode = !dayMode;
-    [_conversionTableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -157,4 +158,9 @@
     [self setData];
 }
 
+- (IBAction)refreshControl:(id)sender {
+    [self.tableView.refreshControl endRefreshing];
+}
+
 @end
+

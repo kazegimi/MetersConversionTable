@@ -10,10 +10,10 @@
 
 @interface ConversionTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *meterLabel;
-@property (weak, nonatomic) IBOutlet UILabel *meterLabel_;
+@property (weak, nonatomic) IBOutlet UILabel *meterBigLabel;
+@property (weak, nonatomic) IBOutlet UILabel *meterSmallLabel;
 @property (weak, nonatomic) IBOutlet UIView *separateView;
-@property (weak, nonatomic) IBOutlet UILabel *feetLabel;
-@property (weak, nonatomic) IBOutlet UILabel *feetLabel_;
+@property (weak, nonatomic) IBOutlet UILabel *feetBigLabel;
+@property (weak, nonatomic) IBOutlet UILabel *feetSmallLabel;
 
 @end
