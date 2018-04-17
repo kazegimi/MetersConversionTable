@@ -23,6 +23,7 @@
 		440EA5E4207E0DDB00EB7389 /* AreaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5E3207E0DDB00EB7389 /* AreaTableViewController.m */; };
 		440EA5E6207E105600EB7389 /* datas.json in Resources */ = {isa = PBXBuildFile; fileRef = 440EA5E5207E105600EB7389 /* datas.json */; };
 		440EA5E9207F208100EB7389 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EA5E8207F208100EB7389 /* MainTableViewController.m */; };
+		44D5A6F9208073910031384A /* URLDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D5A6F8208073910031384A /* URLDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		440EA5E5207E105600EB7389 /* datas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = datas.json; sourceTree = "<group>"; };
 		440EA5E7207F208100EB7389 /* MainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		440EA5E8207F208100EB7389 /* MainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
+		44D5A6F7208073910031384A /* URLDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLDownloader.h; sourceTree = "<group>"; };
+		44D5A6F8208073910031384A /* URLDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				440EA5E3207E0DDB00EB7389 /* AreaTableViewController.m */,
 				440EA5DD207E075D00EB7389 /* SettingTableViewController.h */,
 				440EA5DE207E075D00EB7389 /* SettingTableViewController.m */,
+				44D5A6F7208073910031384A /* URLDownloader.h */,
+				44D5A6F8208073910031384A /* URLDownloader.m */,
 				440EA5A3207DF80000EB7389 /* Assets.xcassets */,
 				440EA5A5207DF80000EB7389 /* LaunchScreen.storyboard */,
 				440EA5A8207DF80000EB7389 /* Info.plist */,
@@ -232,7 +237,7 @@
 		440EA58C207DF7FF00EB7389 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = skyElements;
 				TargetAttributes = {
 					440EA593207DF80000EB7389 = {
@@ -311,6 +316,7 @@
 				440EA5A2207DF80000EB7389 /* MetersConversionTable.xcdatamodeld in Sources */,
 				440EA5DF207E075D00EB7389 /* SettingTableViewController.m in Sources */,
 				440EA5AA207DF80000EB7389 /* main.m in Sources */,
+				44D5A6F9208073910031384A /* URLDownloader.m in Sources */,
 				440EA5D2207DF8C200EB7389 /* ConversionTableViewCell.m in Sources */,
 				440EA5E4207E0DDB00EB7389 /* AreaTableViewController.m in Sources */,
 				440EA599207DF80000EB7389 /* AppDelegate.m in Sources */,
@@ -382,6 +388,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -389,6 +396,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -437,6 +445,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -444,6 +453,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

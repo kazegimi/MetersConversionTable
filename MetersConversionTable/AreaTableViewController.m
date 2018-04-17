@@ -27,9 +27,13 @@
     
     self.title = @"Select Area";
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    datasArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"datasArray"];
+    if (datasArray.count == 0) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    }
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -42,9 +46,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
     
     cell.backgroundColor = [UIColor clearColor];
     
@@ -54,21 +55,23 @@
         selectedView.backgroundColor = [UIColor lightGrayColor];
         [cell setSelectedBackgroundView:selectedView];
         cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
     } else {
         self.view.backgroundColor = [UIColor blackColor];
         UIView *selectedView = [[UIView alloc] init];
         selectedView.backgroundColor = [UIColor darkGrayColor];
         [cell setSelectedBackgroundView:selectedView];
         cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
     
     cell.textLabel.text = datasArray[indexPath.row][0];
+    cell.detailTextLabel.text = datasArray[indexPath.row][1];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //[self.navigationController popViewControllerAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

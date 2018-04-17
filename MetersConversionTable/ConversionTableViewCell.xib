@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="CourierNew.ttf">
-            <string>CourierNewPSMT</string>
-        </array>
-        <array key="CourierNewBold.ttf">
-            <string>CourierNewPS-BoldMT</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -74,9 +66,9 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POV-Rv-cI3">
                                 <rect key="frame" x="160" y="0.0" width="0.5" height="54.5"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="0.5" id="FxI-9A-Mf6"/>
+                                    <constraint firstAttribute="width" constant="1" id="FxI-9A-Mf6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vKq-Jt-5U6">
@@ -128,13 +120,36 @@
                             <constraint firstAttribute="bottom" secondItem="POV-Rv-cI3" secondAttribute="bottom" id="sRy-Cy-2Tl"/>
                         </constraints>
                     </stackView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsI-ba-wJy">
+                        <rect key="frame" x="138" y="16.5" width="44" height="22"/>
+                        <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="5RQ-qw-Yqh"/>
+                            <constraint firstAttribute="height" constant="22" id="t0g-VV-VYV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwz-bM-GcS">
+                        <rect key="frame" x="0.0" y="54.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="5Ed-ag-fif"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="8rh-8h-of5" secondAttribute="bottom" id="0EL-u2-GiQ"/>
+                    <constraint firstItem="YsI-ba-wJy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2Gh-hH-374"/>
+                    <constraint firstAttribute="bottom" secondItem="gwz-bM-GcS" secondAttribute="bottom" id="49W-d0-2IM"/>
                     <constraint firstItem="8rh-8h-of5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7wk-V1-4FS"/>
+                    <constraint firstItem="gwz-bM-GcS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KKn-gQ-Zr6"/>
                     <constraint firstAttribute="trailing" secondItem="8rh-8h-of5" secondAttribute="trailing" id="RAk-J4-SAz"/>
                     <constraint firstItem="8rh-8h-of5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZtS-cX-zq5"/>
+                    <constraint firstAttribute="trailing" secondItem="gwz-bM-GcS" secondAttribute="trailing" id="qh4-NC-nHI"/>
+                    <constraint firstItem="YsI-ba-wJy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="rh5-gU-dbY"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -142,9 +157,11 @@
             <connections>
                 <outlet property="feetBigLabel" destination="Jo9-0k-uPn" id="Fva-3j-M1O"/>
                 <outlet property="feetSmallLabel" destination="Rhp-kP-7y7" id="jgZ-Tf-5bc"/>
+                <outlet property="horizontalSeparateView" destination="POV-Rv-cI3" id="fXX-lP-cO2"/>
                 <outlet property="meterBigLabel" destination="lj5-KP-MJ6" id="DE9-e9-Zt4"/>
                 <outlet property="meterSmallLabel" destination="35v-Pt-0xs" id="gdr-TG-8vR"/>
-                <outlet property="separateView" destination="POV-Rv-cI3" id="sVX-18-Kgx"/>
+                <outlet property="timeLabel" destination="YsI-ba-wJy" id="XNe-6r-mN7"/>
+                <outlet property="verticalSeparateView" destination="gwz-bM-GcS" id="rqf-o2-za6"/>
             </connections>
             <point key="canvasLocation" x="34" y="54.5"/>
         </tableViewCell>

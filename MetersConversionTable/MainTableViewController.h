@@ -12,12 +12,12 @@
 #import "AreaTableViewController.h"
 #import "SettingTableViewController.h"
 
-@interface MainTableViewController : UITableViewController
+@interface MainTableViewController : UITableViewController <SettingTableViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
-- (IBAction)refreshControl:(id)sender;
 
 @property (nonatomic) NSInteger selectedArea;
+@property (nonatomic) float rowHeight;
 
 - (IBAction)dayModeButton:(id)sender;
 

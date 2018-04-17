@@ -20,38 +20,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    [UIApplication sharedApplication].idleTimerDisabled = YES; // Turn off sleep mode
     _selectedArea = 0;
     dayMode = NO;
     
     [self setData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    _rowHeight = [[[NSUserDefaults standardUserDefaults] objectForKey:@"rowHeight"] floatValue];
+    if (_rowHeight == 0) _rowHeight = 55.0f;
+    [self.tableView reloadData];
 }
 
 - (void)setData {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSArray *datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    NSArray *datasArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"datasArray"];
+    if (datasArray.count == 0) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    }
+    
     NSArray *selectedDatasArray = datasArray[_selectedArea];
     
     [_titleButton setTitle:selectedDatasArray[0] forState:UIControlStateNormal];
-    meterFeetArray = selectedDatasArray[1];
+    meterFeetArray = selectedDatasArray[2];
     
     checkedMeterFeetArray = [NSMutableArray new];
     for (int i = 0; i < meterFeetArray.count; i++) {
-        [checkedMeterFeetArray addObject:@"NO"];
+        NSArray *array = @[@"NO", @"UNKNOWN"];
+        [checkedMeterFeetArray addObject:array];
     }
     
     [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 55.0f;
+    return _rowHeight;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -60,6 +66,7 @@
 
 - (ConversionTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ConversionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
     if (cell == nil) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ConversionTableViewCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
@@ -85,6 +92,10 @@
     } else {
         cell.meterSmallLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:15];
     }
+    
+    // SeparateView
+    cell.horizontalSeparateView.backgroundColor = [tableView separatorColor];
+    cell.verticalSeparateView.backgroundColor = [tableView separatorColor];
     
     // Feet
     NSString *feetString = meterFeetArray[indexPath.row][1];
@@ -121,21 +132,37 @@
         } completion:nil];
     }
     
-    if ([checkedMeterFeetArray[indexPath.row] isEqualToString:@"YES"]) {
+    if ([checkedMeterFeetArray[indexPath.row][0] isEqualToString:@"YES"]) {
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        cell.timeLabel.text = [NSString stringWithFormat:@"%@Z", checkedMeterFeetArray[indexPath.row][1]];
+        cell.timeLabel.hidden = NO;
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        cell.timeLabel.hidden = YES;
     }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [checkedMeterFeetArray replaceObjectAtIndex:indexPath.row withObject:@"YES"];
+    // 現在UTC取得
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    dateFormatter.dateFormat = @"HH:mm";
+    NSString *dateString = [dateFormatter stringFromDate:date];
+    [checkedMeterFeetArray replaceObjectAtIndex:indexPath.row withObject:@[@"YES", dateString]];
+    
+    ConversionTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //cell.layer.borderColor = [[UIColor yellowColor] CGColor];
+    cell.timeLabel.text = [NSString stringWithFormat:@"%@Z", [dateFormatter stringFromDate:date]];
+    cell.timeLabel.hidden = NO;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    [checkedMeterFeetArray replaceObjectAtIndex:indexPath.row withObject:@"NO"];
+    [checkedMeterFeetArray replaceObjectAtIndex:indexPath.row withObject:@[@"NO", @"UNKNOWN"]];
+    ConversionTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.timeLabel.hidden = YES;
 }
 
 - (IBAction)dayModeButton:(id)sender {
@@ -146,6 +173,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"settingSegue"]) {
         SettingTableViewController *settingTableViewController = segue.destinationViewController;
+        settingTableViewController.delegate = self;
         settingTableViewController.dayMode = dayMode;
     }
     if ([segue.identifier isEqualToString:@"areaSegue"]) {
@@ -158,8 +186,24 @@
     [self setData];
 }
 
+- (void)didFinishDownloadingNewDatas {
+    _selectedArea = 0;
+    [self setData];
+}
+
+/*
 - (IBAction)refreshControl:(id)sender {
+    NSArray *selectedIndexPathsArray = self.tableView.indexPathsForSelectedRows;
+    for (NSIndexPath *indexPath in selectedIndexPathsArray) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
     [self.tableView.refreshControl endRefreshing];
+}
+ */
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

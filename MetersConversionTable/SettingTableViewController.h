@@ -8,8 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingTableViewController : UITableViewController
+#import "URLDownloader.h"
+
+@protocol SettingTableViewControllerDelegate
+
+@optional
+
+- (void)didFinishDownloadingNewDatas;
+
+@end
+
+#import "MainTableViewController.h" // DelegateのProtocolよりも前にあるとErrorになる
+
+@interface SettingTableViewController : UITableViewController <URLDownloaderDelegate, UITextFieldDelegate>
+
+@property (strong, nonatomic) id<SettingTableViewControllerDelegate> delegate;
 
 @property (nonatomic) BOOL dayMode;
+
+@property (weak, nonatomic) IBOutlet UILabel *urlLabel;
+@property (weak, nonatomic) IBOutlet UITextField *urlTextField;
+@property (weak, nonatomic) IBOutlet UILabel *downloadLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rowHeightLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *rowHeightSegmentedControl;
+- (IBAction)rowHeightSegmentedControl:(id)sender;
 
 @end
