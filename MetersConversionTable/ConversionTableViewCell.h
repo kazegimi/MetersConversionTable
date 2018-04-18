@@ -12,9 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *meterBigLabel;
 @property (weak, nonatomic) IBOutlet UILabel *meterSmallLabel;
+@property (weak, nonatomic) IBOutlet UILabel *meterOrderLabel;
 @property (weak, nonatomic) IBOutlet UIView *horizontalSeparateView;
 @property (weak, nonatomic) IBOutlet UILabel *feetBigLabel;
 @property (weak, nonatomic) IBOutlet UILabel *feetSmallLabel;
+@property (weak, nonatomic) IBOutlet UILabel *feetOrderLabel;
 @property (weak, nonatomic) IBOutlet UIView *verticalSeparateView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 

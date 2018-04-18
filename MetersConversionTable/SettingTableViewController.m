@@ -19,21 +19,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Setting";
+    
     if (_dayMode) {
         self.view.backgroundColor = [UIColor whiteColor];
         _urlLabel.textColor = [UIColor blackColor];
         _urlTextField.textColor = [UIColor darkGrayColor];
         _downloadLabel.textColor = [UIColor blackColor];
         _rowHeightLabel.textColor = [UIColor blackColor];
+        _leftNumberFormatLabel.textColor = [UIColor blackColor];
+        _rightNumberFormatLabel.textColor = [UIColor blackColor];
     } else {
         self.view.backgroundColor = [UIColor blackColor];
         _urlLabel.textColor = [UIColor lightGrayColor];
         _urlTextField.textColor = [UIColor grayColor];
         _downloadLabel.textColor = [UIColor lightGrayColor];
         _rowHeightLabel.textColor = [UIColor lightGrayColor];
+        _leftNumberFormatLabel.textColor = [UIColor lightGrayColor];
+        _rightNumberFormatLabel.textColor = [UIColor lightGrayColor];
     }
     
-    self.title = @"Setting";
+    _leftNumberFormatSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"meterNumberFormat"];
+    _rightNumberFormatSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"feetNumberFormat"];
     
     urlDownloader = [[URLDownloader alloc] init];
     urlDownloader.delegate = self;
@@ -75,6 +82,16 @@
             break;
     }
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithFloat:rowHeight] forKey:@"rowHeight"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)leftNumberFormatSwitch:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:_leftNumberFormatSwitch.on forKey:@"meterNumberFormat"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)rightNumberFormatSwitch:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:_rightNumberFormatSwitch.on forKey:@"feetNumberFormat"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -28,11 +28,6 @@
     self.title = @"Select Area";
     
     datasArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"datasArray"];
-    if (datasArray.count == 0) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    }
     [self.tableView reloadData];
 }
 
@@ -66,7 +61,8 @@
     }
     
     cell.textLabel.text = datasArray[indexPath.row][0];
-    cell.detailTextLabel.text = datasArray[indexPath.row][1];
+    NSString *string = [NSString stringWithFormat:@"\"%@\" to \"%@\", %@", datasArray[indexPath.row][2][0], datasArray[indexPath.row][2][1], datasArray[indexPath.row][1]];
+    cell.detailTextLabel.text = string;
     
     return cell;
 }

@@ -13,6 +13,7 @@
 @end
 
 @implementation MainTableViewController {
+    NSArray *orderArray;
     NSArray *meterFeetArray;
     NSMutableArray *checkedMeterFeetArray;
     BOOL dayMode;
@@ -25,27 +26,33 @@
     _selectedArea = 0;
     dayMode = NO;
     
+    // UserDefaultの初期値設定
+    NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSArray *datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    [keyValues setObject:datasArray forKey:@"datasArray"];
+    [keyValues setObject:@"YES" forKey:@"meterNumberFormat"];
+    [keyValues setObject:@"NO" forKey:@"feetNumberFormat"];
+    [keyValues setObject:@"55.0f" forKey:@"rowHeight"];
+    [keyValues setObject:@"" forKey:@"url"];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:keyValues];
+    
     [self setData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     _rowHeight = [[[NSUserDefaults standardUserDefaults] objectForKey:@"rowHeight"] floatValue];
-    if (_rowHeight == 0) _rowHeight = 55.0f;
     [self.tableView reloadData];
 }
 
 - (void)setData {
     NSArray *datasArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"datasArray"];
-    if (datasArray.count == 0) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    }
-    
     NSArray *selectedDatasArray = datasArray[_selectedArea];
     
     [_titleButton setTitle:selectedDatasArray[0] forState:UIControlStateNormal];
-    meterFeetArray = selectedDatasArray[2];
+    orderArray = selectedDatasArray[2];
+    meterFeetArray = selectedDatasArray[3];
     
     checkedMeterFeetArray = [NSMutableArray new];
     for (int i = 0; i < meterFeetArray.count; i++) {
@@ -78,20 +85,26 @@
     
     NSInteger meterBig = meter / 100;
     NSMutableString *meterBigString = [NSMutableString stringWithString:[NSString stringWithFormat:@"%ld", meterBig]];
-    NSInteger length = meterBigString.length;
-    if (length > 1) {
-        [meterBigString insertString:@"," atIndex:length - 1];
+    // ,の挿入
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"meterNumberFormat"]) {
+        NSInteger length = meterBigString.length;
+        if (length > 1) {
+            [meterBigString insertString:@"," atIndex:length - 1];
+        }
     }
+    
     cell.meterBigLabel.text = meterBigString;
     
     NSString *meterSmallString = [meterString substringFromIndex:meterString.length - 2];
-    cell.meterSmallLabel.text = [NSString stringWithFormat:@"%@m", meterSmallString];
+    cell.meterSmallLabel.text = meterSmallString;
     
     if ([meterSmallString isEqualToString:@"00"]) {
         cell.meterSmallLabel.font = [UIFont fontWithName:@"Courier New" size:15];
     } else {
         cell.meterSmallLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:15];
     }
+    
+    cell.meterOrderLabel.text = orderArray[0];
     
     // SeparateView
     cell.horizontalSeparateView.backgroundColor = [tableView separatorColor];
@@ -101,10 +114,20 @@
     NSString *feetString = meterFeetArray[indexPath.row][1];
     NSInteger feet = [feetString integerValue];
     NSInteger feetBig = feet / 100;
-    cell.feetBigLabel.text = [NSString stringWithFormat:@"%ld", feetBig];
+    NSMutableString *feetBigString = [NSMutableString stringWithString:[NSString stringWithFormat:@"%ld", feetBig]];
+    // ,の挿入
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"feetNumberFormat"]) {
+        NSInteger length = feetBigString.length;
+        if (length > 1) {
+            [feetBigString insertString:@"," atIndex:length - 1];
+        }
+    }
+    cell.feetBigLabel.text = feetBigString;
     
     NSString *feetSmallString = [feetString substringFromIndex:feetString.length - 2];
-    cell.feetSmallLabel.text = [NSString stringWithFormat:@"%@ft", feetSmallString];
+    cell.feetSmallLabel.text = feetSmallString;
+    
+    cell.feetOrderLabel.text = orderArray[1];
     
     if (dayMode) {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
@@ -115,8 +138,10 @@
             [cell setSelectedBackgroundView:selectedView];
             cell.meterBigLabel.textColor = [UIColor blackColor];
             cell.meterSmallLabel.textColor = [UIColor blackColor];
+            cell.meterOrderLabel.textColor = [UIColor blackColor];
             cell.feetBigLabel.textColor = [UIColor darkGrayColor];
             cell.feetSmallLabel.textColor = [UIColor darkGrayColor];
+            cell.feetOrderLabel.textColor = [UIColor darkGrayColor];
         } completion:nil];
     } else {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
@@ -127,8 +152,10 @@
             [cell setSelectedBackgroundView:selectedView];
             cell.meterBigLabel.textColor = [UIColor lightGrayColor];
             cell.meterSmallLabel.textColor = [UIColor lightGrayColor];
+            cell.meterOrderLabel.textColor = [UIColor lightGrayColor];
             cell.feetBigLabel.textColor = [UIColor grayColor];
             cell.feetSmallLabel.textColor = [UIColor grayColor];
+            cell.feetOrderLabel.textColor = [UIColor grayColor];
         } completion:nil];
     }
     

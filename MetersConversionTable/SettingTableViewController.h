@@ -31,6 +31,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *downloadLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rowHeightLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *rowHeightSegmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *leftNumberFormatLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *leftNumberFormatSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *rightNumberFormatLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *rightNumberFormatSwitch;
+
 - (IBAction)rowHeightSegmentedControl:(id)sender;
+- (IBAction)leftNumberFormatSwitch:(id)sender;
+- (IBAction)rightNumberFormatSwitch:(id)sender;
 
 @end

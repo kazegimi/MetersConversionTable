@@ -218,11 +218,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3DJ-l2-hUu">
-                                                    <rect key="frame" x="128.5" y="11" width="230.5" height="34"/>
+                                                    <rect key="frame" x="198" y="11" width="161" height="34"/>
                                                     <segments>
-                                                        <segment title="55px"/>
-                                                        <segment title="44px"/>
-                                                        <segment title="33px"/>
+                                                        <segment title=" 55px "/>
+                                                        <segment title=" 44px "/>
+                                                        <segment title=" 33px "/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="rowHeightSegmentedControl:" destination="fED-ud-ygL" eventType="valueChanged" id="mpX-z3-0dA"/>
@@ -230,7 +230,6 @@
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="3DJ-l2-hUu" firstAttribute="leading" secondItem="gZf-yI-ZiP" secondAttribute="trailing" constant="8" id="16w-n2-QcN"/>
                                                 <constraint firstAttribute="bottom" secondItem="gZf-yI-ZiP" secondAttribute="bottom" id="C4s-yg-FEO"/>
                                                 <constraint firstItem="gZf-yI-ZiP" firstAttribute="top" secondItem="d4d-i4-9Al" secondAttribute="top" id="Osp-SG-FO6"/>
                                                 <constraint firstItem="3DJ-l2-hUu" firstAttribute="top" secondItem="d4d-i4-9Al" secondAttribute="topMargin" id="QhO-lr-gg4"/>
@@ -247,6 +246,27 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JiN-s4-x33" id="S31-kV-Ebe">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NUMBER FORMAT(LEFT)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdL-6B-Dux">
+                                                    <rect key="frame" x="16" y="11" width="193" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCZ-HZ-S2J">
+                                                    <rect key="frame" x="310" y="11" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="leftNumberFormatSwitch:" destination="fED-ud-ygL" eventType="valueChanged" id="qvy-to-dCF"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kCZ-HZ-S2J" firstAttribute="trailing" secondItem="S31-kV-Ebe" secondAttribute="trailingMargin" id="0xZ-gq-3Vl"/>
+                                                <constraint firstItem="kCZ-HZ-S2J" firstAttribute="centerY" secondItem="S31-kV-Ebe" secondAttribute="centerY" id="Ifc-6T-kcx"/>
+                                                <constraint firstItem="HdL-6B-Dux" firstAttribute="top" secondItem="S31-kV-Ebe" secondAttribute="topMargin" id="Uh6-Qx-APx"/>
+                                                <constraint firstItem="HdL-6B-Dux" firstAttribute="leading" secondItem="S31-kV-Ebe" secondAttribute="leadingMargin" id="XfL-6H-NGq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HdL-6B-Dux" secondAttribute="bottom" id="mFX-q3-jUx"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
@@ -256,6 +276,27 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1ZP-Xc-Vf4" id="ktU-7g-k2f">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NUMBER FORMAT(RIGHT)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gi-zm-Z1f">
+                                                    <rect key="frame" x="16" y="11" width="204" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tEJ-tm-yqK">
+                                                    <rect key="frame" x="310" y="11" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="rightNumberFormatSwitch:" destination="fED-ud-ygL" eventType="valueChanged" id="fOb-w1-sLT"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6gi-zm-Z1f" firstAttribute="top" secondItem="ktU-7g-k2f" secondAttribute="topMargin" id="MBR-SD-uby"/>
+                                                <constraint firstItem="tEJ-tm-yqK" firstAttribute="trailing" secondItem="ktU-7g-k2f" secondAttribute="trailingMargin" id="auA-Cq-49b"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6gi-zm-Z1f" secondAttribute="bottom" id="ixd-jD-wbH"/>
+                                                <constraint firstItem="tEJ-tm-yqK" firstAttribute="centerY" secondItem="ktU-7g-k2f" secondAttribute="centerY" id="q7i-7r-uey"/>
+                                                <constraint firstItem="6gi-zm-Z1f" firstAttribute="leading" secondItem="ktU-7g-k2f" secondAttribute="leadingMargin" id="s3d-Ye-bBi"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
@@ -269,6 +310,10 @@
                     </tableView>
                     <connections>
                         <outlet property="downloadLabel" destination="EtV-Sw-J27" id="aa4-c6-6No"/>
+                        <outlet property="leftNumberFormatLabel" destination="HdL-6B-Dux" id="8tC-4I-kIa"/>
+                        <outlet property="leftNumberFormatSwitch" destination="kCZ-HZ-S2J" id="s1E-OR-eQ6"/>
+                        <outlet property="rightNumberFormatLabel" destination="6gi-zm-Z1f" id="kg2-JB-8MK"/>
+                        <outlet property="rightNumberFormatSwitch" destination="tEJ-tm-yqK" id="DKu-cY-4Di"/>
                         <outlet property="rowHeightLabel" destination="gZf-yI-ZiP" id="0sU-Se-oNx"/>
                         <outlet property="rowHeightSegmentedControl" destination="3DJ-l2-hUu" id="43Q-QS-2MF"/>
                         <outlet property="urlLabel" destination="Lrl-S7-jEA" id="7DX-Jx-zol"/>
