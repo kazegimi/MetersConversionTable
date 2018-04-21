@@ -26,6 +26,8 @@
     _selectedArea = 0;
     dayMode = NO;
     
+    //[self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
     // UserDefaultの初期値設定
     NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
@@ -34,7 +36,7 @@
     [keyValues setObject:datasArray forKey:@"datasArray"];
     [keyValues setObject:@"YES" forKey:@"meterNumberFormat"];
     [keyValues setObject:@"NO" forKey:@"feetNumberFormat"];
-    [keyValues setObject:@"55.0f" forKey:@"rowHeight"];
+    [keyValues setObject:[NSNumber numberWithFloat:55.0f] forKey:@"rowHeight"];
     [keyValues setObject:@"" forKey:@"url"];
     [[NSUserDefaults standardUserDefaults] registerDefaults:keyValues];
     
@@ -42,7 +44,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    _rowHeight = [[[NSUserDefaults standardUserDefaults] objectForKey:@"rowHeight"] floatValue];
+    _rowHeight = [[NSUserDefaults standardUserDefaults] floatForKey:@"rowHeight"];
     [self.tableView reloadData];
 }
 
@@ -129,10 +131,13 @@
     
     cell.feetOrderLabel.text = orderArray[1];
     
+    float duration = 0.0f; //ひとまずAnimationはお預け・・・
     if (dayMode) {
-        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
+        [UIView animateWithDuration:duration delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
             //アニメーションで変化させたい値を設定する（最終的に変更したい値）
-            self.view.backgroundColor = [UIColor whiteColor];
+            self.navigationController.view.backgroundColor = [UIColor whiteColor];
+            self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+            [self.titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             UIView *selectedView = [[UIView alloc] init];
             selectedView.backgroundColor = [UIColor lightGrayColor];
             [cell setSelectedBackgroundView:selectedView];
@@ -144,9 +149,11 @@
             cell.feetOrderLabel.textColor = [UIColor darkGrayColor];
         } completion:nil];
     } else {
-        [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
+        [UIView animateWithDuration:duration delay:0.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^ {
             //アニメーションで変化させたい値を設定する（最終的に変更したい値）
-            self.view.backgroundColor = [UIColor blackColor];
+            self.navigationController.view.backgroundColor = [UIColor blackColor];
+            self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+            [self.titleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             UIView *selectedView = [[UIView alloc] init];
             selectedView.backgroundColor = [UIColor darkGrayColor];
             [cell setSelectedBackgroundView:selectedView];
