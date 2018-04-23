@@ -30,7 +30,7 @@
     
     // UserDefaultの初期値設定
     NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"datas" ofType:@"json"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSArray *datasArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     [keyValues setObject:datasArray forKey:@"datasArray"];
